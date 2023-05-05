@@ -1,0 +1,33 @@
+g = 9.81;
+mu = 0.55;
+F = 150;
+m = 25;
+format long 
+func = @(theta) ((mu*m*g)./(cosd(theta)+mu.*sind(theta)))-F;
+% Define the function to be solved for. Is the angle specified in radians or degrees?
+
+% THINK, what makes range sense for angle?
+x=0:0.5:90;
+y = func(x);
+% Plot your function. Does plotting give you an idea about where the root is?
+plot(x, y)
+grid()
+title('Root Finding')
+xlabel('Theta')
+ylabel('Force')
+
+xl=0;
+xu=90;
+
+[angle, fx, ea, iter] = bisect(func, xl, xu);
+fprintf('The angle is %f degrees.\n', angle);
+fprintf('It took %d iterations.\n', iter);
+fprintf('The approximate error is %f.\n', ea);
+fprintf('Evaluation at the root as %f.\n', fx);
+% Finaly solve for the root using the bisection script given to you, which can be called as:
+
+% These variables will be check for your final answer:
+%angle =  % the angle in degree that solves this problem
+%fx =     % the function value at your solved angle
+%ea =     % the bisection error estimate
+%iter =   % the number of bisection iterations
