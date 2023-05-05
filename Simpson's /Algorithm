@@ -1,0 +1,26 @@
+function [I] = Simpson(x, y)
+% Numerical evaluation of integral by Simpson's 1/3 Rule
+if length(y)~= length(x)%checking the size of the inputs
+    error('Inputs must be the same size')
+end 
+
+der =diff(x);%computes the differences of the values 
+
+if ~all(abs(der-der(1))<1e-8)%check to see if the inputs are equally spaced 
+error('Inputs need to be equally spaced')
+end
+
+
+if mod(length(x),2) == 0%this checks the length because simpson's 1/3 rule can only work with even amount of data points so now we need to finish the algoithm off with the trap rule if it exceeds 4
+    warning('Trapezoidal rule is needed to finish')
+end 
+
+step = der(1);%step size b-a
+n = length(x)-1;%number of segments 
+I = y(1)+y(end)+4*sum(y(2:2:end-1))+2*sum(y(3:2:end-2));% using simpson's 1/3
+
+if mod(length(x),2)==0
+    I = I+(y(end-1)+y(end)).*(step./2)%using trap for the rest of values that the simposon's 1/3 didn't cover
+end 
+I = I.*step./3%Integration multiplied by the step size/3 for final step of the algorithm 
+end 
