@@ -1,4 +1,5 @@
-Define the function to be solved for. Is the angle specified in radians or degrees?
+This algorithm solves for the root with a given function and upper and lower bound 
+Define the function to be solved for. 
 correct ramge for an angle is what my x bounds are. 
 func(x) evaluates the x within the function
 We want to plot the function to get a better understanding of where the root is and make sure we have all the axis titles and grid added in to make it look nice. 
